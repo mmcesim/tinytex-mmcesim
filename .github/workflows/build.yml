@@ -48,7 +48,11 @@ jobs:
         if [ -d "./.TinyTeX" ]; then
           mv .TinyTeX TinyTeX
         fi
-        echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
+        if [ "${{ runner.os }}" == "Windows" ]; then
+          echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $env:GITHUB_PATH
+        else
+          echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
+        fi
 
     - name: Install Packages
       run: sh ${{ github.workspace }}/install_pkg.sh
