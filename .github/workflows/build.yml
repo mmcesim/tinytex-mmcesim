@@ -65,7 +65,7 @@ jobs:
         latexmk -pdfxe test.tex
 
     - name: Pack
-      run: zip -r ${{ matrix.config.artifact }} TinyTeX
+      run: 7z a -tzip ${{ matrix.config.artifact }} TinyTeX/ -xr!log
 
     - name: Upload
       uses: actions/upload-artifact@v1
