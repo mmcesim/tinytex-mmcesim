@@ -17,6 +17,7 @@ jobs:
             file: TinyTeX-1.zip
             artifact: TinyTeX-mmCEsim-Windows.zip
             tl_prefix: win32
+            uncompress: unzip
           - name: Linux
             os: ubuntu-latest
             architecture: x86_64
@@ -24,6 +25,7 @@ jobs:
             file: TinyTeX-1.tar.gz
             artifact: TinyTeX-mmCEsim-Linux.zip
             tl_prefix: x86_64-linux
+            uncompress: tar -xf
           - name: macOS
             os: macos-latest
             architecture: arm
@@ -31,6 +33,7 @@ jobs:
             file: TinyTeX-1.tgz
             artifact: TinyTeX-mmCEsim-macOS.zip
             tl_prefix: universal-darwin
+            uncompress: tar -xf
 
     steps:
     - uses: actions/checkout@v2
@@ -40,7 +43,11 @@ jobs:
     - name: Get TinyTeX
       run: |
         wget ${{ matrix.config.url }}
-        tar -xf ${{ matrix.config.file }}
+        ${{ matrix.config.uncompress }} ${{ matrix.config.file }}
+        if [-d "./.TinyTeX"]
+        then
+          mv .TinyTeX TinyTeX
+        fi
         echo "${GITHUB_WORKSPACE}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
 
     - name: Install Packages
