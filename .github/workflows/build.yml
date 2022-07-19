@@ -51,11 +51,11 @@ jobs:
         echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
 
     - name: Install Packages
-      shell: bash
+      # shell: bash
       run: sh ${{ github.workspace }}/install_pkg.sh
 
     - name: Test
-      shell: bash
+      # shell: bash
       run: |
         cd test
         latexmk -pdfxe test.tex
@@ -82,7 +82,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        release_name: TinyTeX-mmCEsim ${{ github.ref }}
         body: |
           Automatic build for **TinyTeX-mmCEsim**,
           used for [mmCEsim](https://mmcesim.org).
@@ -121,7 +121,7 @@ jobs:
     needs: release
 
     steps:
-    - name: TinyTeX-mmCEsim
+    - name: Download artifact
       uses: actions/download-artifact@v1
       with:
         name: ${{ matrix.config.artifact }}
