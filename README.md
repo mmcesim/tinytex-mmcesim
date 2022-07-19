@@ -1,4 +1,4 @@
-# TinyTex-mmCEsim
+# TinyTex-mmCEsim [![Build TinyTeX-mmCEsim](https://github.com/mmcesim/tinytex-mmcesim/actions/workflows/build.yml/badge.svg)](https://github.com/mmcesim/tinytex-mmcesim/actions/workflows/build.yml)
 TinyTeX Distribution for mmCEsim
 
 This is based on [TinyTeX-1](https://github.com/rstudio/tinytex-releases) which contains [90+ packages](https://github.com/rstudio/tinytex/blob/main/tools/pkgs-custom.txt),
