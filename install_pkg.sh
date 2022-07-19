@@ -1,4 +1,4 @@
 # Install required packages.
 
-tlmgr install xelatex
+tlmgr install xetex
 tlmgr install latexmk
