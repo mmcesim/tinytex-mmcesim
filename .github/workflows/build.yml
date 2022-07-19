@@ -41,6 +41,7 @@ jobs:
         submodules: recursive
 
     - name: Get TinyTeX
+      shell: bash
       run: |
         wget ${{ matrix.config.url }}
         ${{ matrix.config.uncompress }} ${{ matrix.config.file }}
