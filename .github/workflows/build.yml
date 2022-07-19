@@ -17,7 +17,7 @@ jobs:
             file: TinyTeX-1.zip
             artifact: TinyTeX-mmCEsim-Windows.zip
             tl_prefix: win32
-            uncompress: unzip
+            uncompress: unzip -q
           - name: Linux
             os: ubuntu-latest
             architecture: x86_64
@@ -49,6 +49,7 @@ jobs:
           mv .TinyTeX TinyTeX
         fi
         echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
+        echo $GITHUB_PATH
 
     - name: Install Packages
       shell: bash
