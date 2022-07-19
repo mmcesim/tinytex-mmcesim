@@ -43,7 +43,7 @@ jobs:
     - name: Get TinyTeX
       shell: bash
       run: |
-        wget ${{ matrix.config.url }}
+        curl -kLSs ${{ matrix.config.url }} -o ${{ matrix.config.file }}
         ${{ matrix.config.uncompress }} ${{ matrix.config.file }}
         if [ -d "./.TinyTeX" ]; then
           mv .TinyTeX TinyTeX
