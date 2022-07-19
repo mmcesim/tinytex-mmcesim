@@ -51,11 +51,11 @@ jobs:
         echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
 
     - name: Install Packages
-      # shell: bash
-      run: sh ${{ github.workspace }}/install_pkg.sh
+      shell: bash
+      run: sh ./install_pkg.sh
 
     - name: Test
-      # shell: bash
+      shell: bash
       run: |
         cd test
         latexmk -pdfxe test.tex
