@@ -19,8 +19,8 @@ jobs:
           - name: macOS
             os: macos-latest
             architecture: arm
-            url: https://yihui.org/tinytex/TinyTeX-0.tgz
-            file: TinyTeX-0.tgz
+            url: https://yihui.org/tinytex/TinyTeX-1.tgz
+            file: TinyTeX-1.tgz
             artifact: TinyTeX-mmCEsim-macOS.zip
 
     steps:
