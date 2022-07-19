@@ -48,10 +48,10 @@ jobs:
         if [ -d "./.TinyTeX" ]; then
           mv .TinyTeX TinyTeX
         fi
-        echo "${GITHUB_WORKSPACE}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
+        echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
 
     - name: Install Packages
-      run: sh ${GITHUB_WORKSPACE}/install_pkg.sh
+      run: sh ${{ github.workspace }}/install_pkg.sh
 
     - name: Test
       run: |
