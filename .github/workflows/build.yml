@@ -50,15 +50,12 @@ jobs:
         fi
         echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
 
-    # - name: Windows Set tlmgr Alias
-    #   if: ${{ runner.os == 'Windows' }} 
-    #   run: |
-    #     shopt -s expand_aliases
-    #     Set-Alias -Name tlmgr -Value ${{ github.workspace }}/TinyTeX/bin/win32/tlmgr.bat
-    #   # run: echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+    - name: Windows Set tlmgr
+      if: ${{ runner.os == 'Windows' }} 
+      run: (Get-Content ./install_pkg.sh).replace('tlmgr', '${{ github.workspace }}/TinyTeX/bin/win32/tlmgr.bat') | Set-Content ./install_pkg.sh
 
     - name: Install Packages
-      run: ./install_pkg.sh
+      run: sh ./install_pkg.sh
 
     - name: Test
       run: |
