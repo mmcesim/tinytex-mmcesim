@@ -16,21 +16,21 @@ jobs:
             url: https://yihui.org/tinytex/TinyTeX-1.zip
             file: TinyTeX-1.zip
             artifact: TinyTeX-mmCEsim-Windows.zip
-            texlive_prefix: win32
+            tl_prefix: win32
           - name: Linux
             os: ubuntu-latest
             architecture: x86_64
             url: https://yihui.org/tinytex/TinyTeX-1.tar.gz
             file: TinyTeX-1.tar.gz
             artifact: TinyTeX-mmCEsim-Linux.zip
-            texlive_prefix: x86_64-linux
+            tl_prefix: x86_64-linux
           - name: macOS
             os: macos-latest
             architecture: arm
             url: https://yihui.org/tinytex/TinyTeX-1.tgz
             file: TinyTeX-1.tgz
             artifact: TinyTeX-mmCEsim-macOS.zip
-            texlive_prefix: universal-darwin
+            tl_prefix: universal-darwin
 
     steps:
     - uses: actions/checkout@v2
@@ -41,7 +41,7 @@ jobs:
       run: |
         wget ${{ matrix.config.url }}
         tar -xf ${{ matrix.config.file }}
-        echo "${GITHUB_WORKSPACE}/TinyTeX/bin/universal-darwin" >> $GITHUB_PATH
+        echo "${GITHUB_WORKSPACE}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
 
     - name: Install Packages
       run: sh ${GITHUB_WORKSPACE}/install_pkg.sh
