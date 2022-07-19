@@ -48,13 +48,13 @@ jobs:
         if [ -d "./.TinyTeX" ]; then
           mv .TinyTeX TinyTeX
         fi
-        echo "'${{ github.workspace }}'/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
+        echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
 
     - name: Windows Set tlmgr
       if: ${{ runner.os == 'Windows' }} 
       run: |
-        echo "'${{ github.workspace }}'/TinyTeX/bin/${{ matrix.config.tl_prefix }}" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-        (Get-Content ./install_pkg.sh).replace('tlmgr', ''${{ github.workspace }}'/TinyTeX/bin/win32/tlmgr.bat') | Set-Content ./install_pkg.sh
+        echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        (Get-Content ./install_pkg.sh).replace('tlmgr', './TinyTeX/bin/win32/tlmgr.bat') | Set-Content ./install_pkg.sh
 
     - name: Install Packages
       run: sh ./install_pkg.sh
