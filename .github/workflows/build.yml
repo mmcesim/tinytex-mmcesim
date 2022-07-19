@@ -52,7 +52,9 @@ jobs:
 
     - name: Windows Set tlmgr Alias
       if: ${{ runner.os == 'Windows' }} 
-      run: Set-Alias -Name tlmgr -Value ${{ github.workspace }}/TinyTeX/bin/win32/tlmgr.bat
+      run: |
+        shopt -s expand_aliases
+        Set-Alias -Name tlmgr -Value ${{ github.workspace }}/TinyTeX/bin/win32/tlmgr.bat
       # run: echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
     - name: Install Packages
