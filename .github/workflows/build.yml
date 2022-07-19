@@ -54,6 +54,7 @@ jobs:
         name: ${{ matrix.config.artifact }}
 
   release:
+    if: contains(github.ref, 'tags/v')
     runs-on: ubuntu-latest
     needs: build
 
@@ -66,6 +67,11 @@ jobs:
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
+        body: |
+          Automatic build for **TinyTeX-mmCEsim**,
+          used for [mmCEsim](https://mmcesim.org).
+          Installed packages are listed in
+          [`install_pkg.sh`](https://github.com/mmcesim/tinytex-mmcesim/blob/master/install_pkg.sh).
         draft: false
         prerelease: false
 
@@ -78,6 +84,7 @@ jobs:
         name: upload_url
 
   publish:
+    if: contains(github.ref, 'tags/v')
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
     strategy:
