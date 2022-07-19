@@ -50,6 +50,7 @@ jobs:
         fi
         if [ "${{ runner.os }}" == "Windows" ]; then
           echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $env:GITHUB_PATH
+          echo $env:GITHUB_PATH
         else
           echo "${{ github.workspace }}/TinyTeX/bin/${{ matrix.config.tl_prefix }}" >> $GITHUB_PATH
         fi
