@@ -37,7 +37,7 @@ jobs:
 
     - name: Install Packages
       shell: bash
-      run: sudo ${GITHUB_WORKSPACE}/install_pkg.sh
+      run: sh ${GITHUB_WORKSPACE}/install_pkg.sh
 
     - name: Test
       run: |
