@@ -10,33 +10,40 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          # - name: Windows
-          #   os: windows-latest
-          #   architecture: x86_64
-          # - name: Linux
-          #   os: ubuntu-latest
-          #   architecture: x64
+          - name: Windows
+            os: windows-latest
+            architecture: x86_64
+            url: https://yihui.org/tinytex/TinyTeX-1.zip
+            file: TinyTeX-1.zip
+            artifact: TinyTeX-mmCEsim-Windows.zip
+            texlive_prefix: win32
+          - name: Linux
+            os: ubuntu-latest
+            architecture: x86_64
+            url: https://yihui.org/tinytex/TinyTeX-1.tar.gz
+            file: TinyTeX-1.tar.gz
+            artifact: TinyTeX-mmCEsim-Linux.zip
+            texlive_prefix: x86_64-linux
           - name: macOS
             os: macos-latest
             architecture: arm
             url: https://yihui.org/tinytex/TinyTeX-1.tgz
             file: TinyTeX-1.tgz
             artifact: TinyTeX-mmCEsim-macOS.zip
+            texlive_prefix: universal-darwin
 
     steps:
     - uses: actions/checkout@v2
       with: 
         submodules: recursive
 
-    - name: Get TinyTeX (macOS)
-      if: ${{ runner.os == 'macOS' }}
+    - name: Get TinyTeX
       run: |
         wget ${{ matrix.config.url }}
         tar -xf ${{ matrix.config.file }}
         echo "${GITHUB_WORKSPACE}/TinyTeX/bin/universal-darwin" >> $GITHUB_PATH
 
     - name: Install Packages
-      shell: bash
       run: sh ${GITHUB_WORKSPACE}/install_pkg.sh
 
     - name: Test
@@ -91,12 +98,14 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          # - name: Windows
-          #   os: windows-latest
-          #   architecture: x86_64
-          # - name: Linux
-          #   os: ubuntu-latest
-          #   architecture: x64
+          - name: Windows
+            os: windows-latest
+            architecture: x86_64
+            artifact: TinyTeX-mmCEsim-Windows.zip
+          - name: Linux
+            os: ubuntu-latest
+            architecture: x86_64
+            artifact: TinyTeX-mmCEsim-Linux.zip
           - name: macOS
             os: macos-latest
             artifact: TinyTeX-mmCEsim-macOS.zip
